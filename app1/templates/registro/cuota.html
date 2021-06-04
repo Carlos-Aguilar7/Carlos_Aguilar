@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular cuota</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- formulario -->
+            <div class="col-3">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="monto">Monto</label>
+                        <input type="number" name="monto" id="monto" class="form-control" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tasa">Pasa</label>
+                        <input type="number" name="tasa" id="tasa" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="plazo">Plazo</label>
+                        <input type="number" name="plazo" id="plazo" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-success" value="Registrar participante">
+                    </div>
+                </form>
+            </div>
+    
+            <!-- datos -->
+            <div class="col-9">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Monto</th>
+                            <th>Tasa</th>
+                            <th>Plazo</th>
+                            <th>Cuota</th>
+                            <th>Total a pagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for c in registro_cuota %}
+                            <tr>
+                                <td>{{ c.monto }}</td>
+                                <td>{{ c.tasa }}%</td>
+                                <td>{{ c.plazo }} años</td>
+                                <td>{{ c.cuota }}</td>
+                                <td>{{ c.total }}</td>
+                            </tr>
+                        {% endfor %}
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>
